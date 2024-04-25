@@ -1,6 +1,4 @@
-import 'package:fcc/screens/dashboard_screen.dart';
-
-enum ScreenName{
+enum ScreenName {
   Dashboard,
   Authentication,
   Splash,

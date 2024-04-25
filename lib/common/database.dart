@@ -1,8 +1,8 @@
+import 'package:auth_repo/addexpense/model/expense_record.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqlite_api.dart';
 
-import '../model/expense_record.dart';
 
 Future<Database> _getDatabase() async {
   final dbPath = await sql.getDatabasesPath();
