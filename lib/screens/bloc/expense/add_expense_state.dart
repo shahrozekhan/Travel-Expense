@@ -37,5 +37,5 @@ class ExpenseState {
         );
 
   final ExpenseStatus status;
-  final List<ExpenseRecord>? expensesList;
+  List<ExpenseRecord>? expensesList = [];
 }

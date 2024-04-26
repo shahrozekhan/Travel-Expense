@@ -1,5 +1,6 @@
 import 'package:auth_repo/authrepo/auth_repository.dart';
 import 'package:fcc/screens/bloc/authentication/authentication_bloc.dart';
+import 'package:fcc/screens/bloc/expense/add_expense_bloc.dart';
 import 'package:fcc/screens/dashboard/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +48,12 @@ class _DashBoardScreen extends State<DashBoardScreen> {
   final String assetName = 'icons/splash_logo.svg';
 
   @override
+  void initState() {
+    context.read<ExpenseBloc>().reset();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _selectedTabScreen();
 
@@ -89,7 +96,7 @@ class _DashBoardScreen extends State<DashBoardScreen> {
   }
 
   Widget? _selectedTabScreen() {
-   if (_selectedIndex == 0) {
+    if (_selectedIndex == 0) {
       selectedTab = const HomeScreen();
     } else {
       selectedTab = const SettingsScreen();

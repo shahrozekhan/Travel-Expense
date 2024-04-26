@@ -13,7 +13,7 @@ part 'add_expense_event.dart';
 part 'add_expense_state.dart';
 
 class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
-  final ExpenseRepository _expenseRepository;
+  ExpenseRepository _expenseRepository;
   SecureStorage secureStorage = SecureStorage();
 
   final List<ExchangeRate>? exchangeRateList = null;
@@ -37,8 +37,7 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
         var newRate = (settingExchangeRate.rate / fromExchangeRate.first.rate);
         newExpenseList.add(ExpenseRecord(
             id: element.id,
-            currency:
-                "${settingExchangeRate.currency} (${settingExchangeRate.currencyName})",
+            currency: "${settingExchangeRate.currency}",
             date: element.date,
             amount:
                 (double.parse(element.amount) * newRate).toStringAsFixed(6)));
@@ -65,6 +64,12 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
       }
     });
     on<DeleteExpenseEvent>((event, emit) {});
+  }
+
+  void reset() {
+    emit(ExpenseState(
+        status: ExpenseStatus.unknown,
+        expensesList: []));
   }
 
   //This function will be moved to ExchangeRate Repository. As they will be fetched from API service or local storage.
